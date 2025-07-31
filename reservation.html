@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - Sakura Café</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="css/3d-reservation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <style>
+        /* Additional styles specific to the reservation page */
+        .reservation-hero {
+            height: 40vh;
+            min-height: 300px;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/reservation-hero-bg.jpg') no-repeat center center/cover;
+        }
+        
+        .reservation-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .reservation-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .reservation-form-container {
+            background-color: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .reservation-form .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .reservation-form label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+        }
+        
+        .reservation-form input,
+        .reservation-form select,
+        .reservation-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--text-light);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--body-font);
+            transition: border-color var(--transition-fast);
+        }
+        
+        .reservation-form input:focus,
+        .reservation-form select:focus,
+        .reservation-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        .reservation-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .reservation-card {
+            background-color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-md);
+            transition: transform var(--transition-medium);
+        }
+        
+        .reservation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .reservation-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .reservation-card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-light);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--spacing-md);
+            font-size: 1.5rem;
+        }
+        
+        .reservation-card-title {
+            margin-bottom: 0;
+            color: var(--accent-color);
+        }
+        
+        .reservation-policy {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .policy-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .policy-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .policy-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .confirmation-message {
+            display: none;
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .confirmation-message.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .special-occasions {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .occasions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .occasion-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+        
+        .occasion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .occasion-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .occasion-content {
+            padding: var(--spacing-md);
+        }
+        
+        .occasion-title {
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        @media screen and (max-width: 992px) {
+            .occasions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .reservation-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .reservation-info {
+                order: -1;
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .occasions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body id="main-content">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Sakura Café Logo">
+                <h1>Sakura Café</h1>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reservation.html" class="active">Reservation</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Reservation Hero Section -->
+    <section class="reservation-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Make a Reservation</h1>
+                <h2>Secure Your Table at Sakura Café, Kottakuppam</h2>
+                <p>Experience the perfect blend of tranquility and culinary delight in our serene café</p>
+            </div>
+        </div>
+        <div class="sakura-petals"></div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--primary-color)"></div>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section">
+        <div class="container">
+            <div class="reservation-content">
+                <div class="reservation-form-container">
+                    <div id="reservation-3d-container"></div>
+                    <h2>Book Your Table</h2>
+                    <p>Please fill out the form below to make your reservation. We'll confirm your booking via email or phone.</p>
+                    
+                    <form class="reservation-form" id="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="guests">Number of Guests</label>
+                                <select id="guests" name="guests" required>
+                                    <option value="">Select number of guests</option>
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6 People</option>
+                                    <option value="7">7 People</option>
+                                    <option value="8">8 People</option>
+                                    <option value="large">More than 8 (Please specify in notes)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select time</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="occasion">Special Occasion (Optional)</label>
+                            <select id="occasion" name="occasion">
+                                <option value="">Select if applicable</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="business">Business Dinner</option>
+                                <option value="date">Date Night</option>
+                                <option value="other">Other (Please specify in notes)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="seating">Preferred Seating Area</label>
+                            <select id="seating" name="seating" required>
+                                <option value="">Select seating preference</option>
+                                <option value="indoor">Indoor Dining</option>
+                                <option value="garden">Garden Patio</option>
+                                <option value="private">Private Room (Min. 6 guests)</option>
+                                <option value="bar">Sushi Bar</option>
+                                <option value="any">No Preference</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Special Requests or Dietary Requirements (Optional)</label>
+                            <textarea id="notes" name="notes" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                I agree to the reservation policy and cancellation terms
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Confirm Reservation</button>
+                    </form>
+                    
+                    <div class="confirmation-message" id="confirmation-message">
+                        <h3><i class="fas fa-check-circle"></i> Reservation Request Received</h3>
+                        <p>Thank you for your reservation request. We will confirm your booking shortly via email or phone. If you don't receive a confirmation within 24 hours, please contact us directly.</p>
+                    </div>
+                </div>
+                
+                <div class="reservation-info">
+                    <div>
+                        <div class="reservation-card">
+                            <div class="reservation-card-header">
+                                <div class="reservation-card-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="reservation-card-title">Opening Hours</h3>
+                            </div>
+                            <p><strong>Lunch:</strong> 11:00 AM - 2:30 PM<br>
+                            <strong>Dinner:</strong> 6:00 PM - 10:00 PM<br>
+                            <strong>Monday - Friday:</strong> Open all day<br>
+                            <strong>Saturday - Sunday:</strong> Open all day</p>
+                        </div>
+                        
+                        <div class="reservation-card">
+                            <div class="reservation-card-header">
+                                <div class="reservation-card-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <h3 class="reservation-card-title">Contact Information</h3>
+                            </div>
+                            <p>For immediate assistance or large party reservations (more than 8 guests), please contact us directly:</p>
+                            <p><strong>Phone:</strong> +91 9876543210<br>
+                            <strong>Email:</strong> reservations@sakuracafe.com</p>
+                        </div>
+                        
+                        <div class="reservation-card">
+                            <div class="reservation-card-header">
+                                <div class="reservation-card-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h3 class="reservation-card-title">Location</h3>
+                            </div>
+                            <p>Ground Floor, ECR Highway<br>Kottakuppam, Tamil Nadu<br>India</p>
+                            <p><strong>Landmark:</strong> Near Serenity Beach (5 min walk)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reservation-policy">
+                        <h3>Reservation Policy</h3>
+                        <ul class="policy-list">
+                            <li>Reservations can be made up to 30 days in advance.</li>
+                            <li>For parties of 8 or more, please contact us directly.</li>
+                            <li>Your table will be held for 15 minutes after your reservation time.</li>
+                            <li>Cancellations should be made at least 24 hours in advance.</li>
+                            <li>Late cancellations or no-shows may incur a fee.</li>
+                            <li>Special dietary requirements can be accommodated with advance notice.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Special Occasions Section -->
+            <div class="special-occasions">
+                <div class="section-header">
+                    <h2>Special Occasions & Private Events</h2>
+                    <p>Make your celebration memorable at Sakura Café</p>
+                </div>
+                
+                <div class="occasions-grid">
+                    <div class="occasion-card">
+                        <img src="images/occasion-birthday.jpg" alt="Birthday Celebration" class="occasion-image">
+                        <div class="occasion-content">
+                            <h3 class="occasion-title">Birthday Celebrations</h3>
+                            <p>Celebrate your special day with our complimentary sakura-themed dessert and personalized service. Advance notice required.</p>
+                            <a href="contact.html" class="btn secondary">Inquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="occasion-card">
+                        <img src="images/occasion-private.jpg" alt="Private Dining" class="occasion-image">
+                        <div class="occasion-content">
+                            <h3 class="occasion-title">Private Dining</h3>
+                            <p>Our elegant private room accommodates up to 20 guests with customizable menus and dedicated service for your exclusive event.</p>
+                            <a href="contact.html" class="btn secondary">Inquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="occasion-card">
+                        <img src="images/occasion-corporate.jpg" alt="Corporate Events" class="occasion-image">
+                        <div class="occasion-content">
+                            <h3 class="occasion-title">Corporate Events</h3>
+                            <p>Impress clients or reward your team with our business packages including presentation equipment and specialized menus.</p>
+                            <a href="contact.html" class="btn secondary">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Branch -->
+    <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-dark)"></div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Stay updated with our seasonal menus, events, and special offers</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-light)"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="Sakura Café Logo">
+                    <h2>Sakura Café</h2>
+                    <p>Brewing Bonds, Celebrating Moments</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reservation.html">Reservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sakura Café, Kottakuppam. All rights reserved.</p>
+                <p>Ground Floor, ECR Highway, Kottakuppam | Near Serenity Beach</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/enhanced-sakura.js"></script>
+    <script src="js/blossom-hover.js"></script>
+    <script src="js/animated-dividers.js"></script>
+    <script src="js/cursor-trail.js"></script>
+    <script src="js/interactive-gallery.js"></script>
+    <script src="js/event-countdown.js"></script>
+    <script src="js/3d-reservation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+            
+            // Form submission handling
+            const reservationForm = document.getElementById('reservation-form');
+            const confirmationMessage = document.getElementById('confirmation-message');
+            
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const guests = document.getElementById('guests').value;
+                    const date = document.getElementById('date').value;
+                    const time = document.getElementById('time').value;
+                    const seating = document.getElementById('seating').value;
+                    
+                    if (!name || !email || !phone || !guests || !date || !time || !seating) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Check if date is valid (not in the past)
+                    const selectedDate = new Date(date);
+                    const currentDate = new Date();
+                    currentDate.setHours(0, 0, 0, 0);
+                    
+                    if (selectedDate < currentDate) {
+                        alert('Please select a future date for your reservation.');
+                        return;
+                    }
+                    
+                    // If private room is selected, check minimum guests
+                    if (seating === 'private' && guests < 6 && guests !== 'large') {
+                        alert('Private room requires a minimum of 6 guests. Please select a different seating option or increase the number of guests.');
+                        return;
+                    }
+                    
+                    // In a real application, you would send this data to a server
+                    // For demo purposes, we'll just show a success message
+                    confirmationMessage.classList.add('active');
+                    reservationForm.reset();
+                    
+                    // Scroll to confirmation message
+                    confirmationMessage.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

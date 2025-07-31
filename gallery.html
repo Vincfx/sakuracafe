@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Sakura Café</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <style>
+        /* Additional styles specific to the gallery page */
+        .gallery-hero {
+            height: 40vh;
+            min-height: 300px;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/gallery-hero-bg.jpg') no-repeat center center/cover;
+        }
+        
+        .gallery-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .gallery-filter button {
+            background-color: var(--white);
+            border: 1px solid var(--primary-light);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-family: var(--body-font);
+            font-weight: 500;
+        }
+        
+        .gallery-filter button:hover {
+            background-color: var(--primary-light);
+            color: var(--accent-color);
+        }
+        
+        .gallery-filter button.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            transition: transform var(--transition-medium);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-title {
+            color: var(--white);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.25rem;
+        }
+        
+        .gallery-item-category {
+            color: var(--primary-light);
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .gallery-item-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-top: var(--spacing-sm);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-medium);
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80vh;
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: var(--spacing-sm);
+            text-align: center;
+            border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background-color: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 var(--spacing-md);
+        }
+        
+        .lightbox-nav button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+        
+        .lightbox-nav button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        @media screen and (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lightbox-content {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body id="main-content">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Sakura Café Logo">
+                <h1>Sakura Café</h1>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Gallery</h1>
+                <h2>Visual Journey Through Sakura Café</h2>
+                <p>Explore our space, dishes, and moments through these captivating images</p>
+            </div>
+        </div>
+        <div class="sakura-petals"></div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--primary-color)"></div>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="food">Food</button>
+                <button class="filter-btn" data-filter="drinks">Drinks</button>
+                <button class="filter-btn" data-filter="interior">Interior</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Food Items -->
+                <div class="gallery-item" data-category="food">
+                    <img src="images/gallery-food-1.jpg" alt="Sakura Sushi Platter">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Sakura Sushi Platter</h3>
+                        <p class="gallery-item-category">Food</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="images/gallery-food-2.jpg" alt="Cherry Blossom Bento Box">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Cherry Blossom Bento Box</h3>
+                        <p class="gallery-item-category">Food</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="images/gallery-food-3.jpg" alt="Seasonal Ramen Bowl">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Seasonal Ramen Bowl</h3>
+                        <p class="gallery-item-category">Food</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="food">
+                    <img src="images/gallery-food-4.jpg" alt="Sakura Mochi Dessert">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Sakura Mochi Dessert</h3>
+                        <p class="gallery-item-category">Food</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drinks Items -->
+                <div class="gallery-item" data-category="drinks">
+                    <img src="images/gallery-drink-1.jpg" alt="Cherry Blossom Cocktail">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Cherry Blossom Cocktail</h3>
+                        <p class="gallery-item-category">Drinks</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="drinks">
+                    <img src="images/gallery-drink-2.jpg" alt="Premium Sake Selection">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Premium Sake Selection</h3>
+                        <p class="gallery-item-category">Drinks</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="drinks">
+                    <img src="images/gallery-drink-3.jpg" alt="Matcha Tea Ceremony">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Matcha Tea Ceremony</h3>
+                        <p class="gallery-item-category">Drinks</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interior Items -->
+                <div class="gallery-item" data-category="interior">
+                    <img src="images/gallery-interior-1.jpg" alt="Main Dining Area">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Main Dining Area</h3>
+                        <p class="gallery-item-category">Interior</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="interior">
+                    <img src="images/gallery-interior-2.jpg" alt="Sakura Garden Patio">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Sakura Garden Patio</h3>
+                        <p class="gallery-item-category">Interior</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="interior">
+                    <img src="images/gallery-interior-3.jpg" alt="Private Dining Room">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Private Dining Room</h3>
+                        <p class="gallery-item-category">Interior</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Events Items -->
+                <div class="gallery-item" data-category="events">
+                    <img src="images/gallery-event-1.jpg" alt="Sakura Festival Celebration">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Sakura Festival Celebration</h3>
+                        <p class="gallery-item-category">Events</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="events">
+                    <img src="images/gallery-event-2.jpg" alt="Chef's Tasting Event">
+                    <div class="gallery-item-overlay">
+                        <h3 class="gallery-item-title">Chef's Tasting Event</h3>
+                        <p class="gallery-item-category">Events</p>
+                        <div class="gallery-item-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Branch -->
+    <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-dark)"></div>
+    
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+            <div class="lightbox-caption"></div>
+            <button class="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-light)"></div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Stay updated with our seasonal menus, events, and special offers</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="Sakura Café Logo">
+                    <h2>Sakura Café</h2>
+                    <p>A blossoming culinary experience</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reservation.html">Reservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sakura Café. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/enhanced-sakura.js"></script>
+    <script src="js/blossom-hover.js"></script>
+    <script src="js/animated-dividers.js"></script>
+    <script src="js/cursor-trail.js"></script>
+    <script src="js/interactive-gallery.js"></script>
+    <script src="js/event-countdown.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox Functionality
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImage = document.querySelector('.lightbox-image');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            
+            let currentIndex = 0;
+            const visibleItems = () => Array.from(galleryItems).filter(item => item.style.display !== 'none');
+            
+            // Open lightbox
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const items = visibleItems();
+                    currentIndex = items.indexOf(this);
+                    
+                    const img = this.querySelector('img');
+                    const title = this.querySelector('.gallery-item-title').textContent;
+                    
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                    lightboxCaption.textContent = title;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Previous image
+            lightboxPrev.addEventListener('click', function() {
+                const items = visibleItems();
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                
+                const item = items[currentIndex];
+                const img = item.querySelector('img');
+                const title = item.querySelector('.gallery-item-title').textContent;
+                
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightboxCaption.textContent = title;
+            });
+            
+            // Next image
+            lightboxNext.addEventListener('click', function() {
+                const items = visibleItems();
+                currentIndex = (currentIndex + 1) % items.length;
+                
+                const item = items[currentIndex];
+                const img = item.querySelector('img');
+                const title = item.querySelector('.gallery-item-title').textContent;
+                
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightboxCaption.textContent = title;
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    lightboxPrev.click();
+                } else if (e.key === 'ArrowRight') {
+                    lightboxNext.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

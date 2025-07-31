@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Café - A Blossoming Experience</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+</head>
+<body id="main-content">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Sakura Café Logo">
+                <h1>Sakura Café</h1>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Brewing Bonds, Celebrating Moments</h1>
+            <h2>Experience the magic of Sakura in every sip and bite at Kottakuppam's most enchanting Japanese-themed cafe.</h2>
+            <div class="hero-buttons">
+                <a href="menu.html" class="btn primary">Explore Our Menu</a>
+                <a href="contact.html" class="btn secondary">Visit Us Today</a>
+            </div>
+        </div>
+        <div class="sakura-petals"></div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--primary-color)"></div>
+
+    <!-- Featured Section -->
+    <section class="featured">
+        <div class="container">
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Authentic Cuisine</h3>
+                    <p>Experience traditional Japanese flavors with our chef's modern interpretation</p>
+                </div>
+                <div class="featured-item">
+                    <div class="icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Seasonal Menu</h3>
+                    <p>Our menu changes with the seasons, featuring the freshest ingredients</p>
+                </div>
+                <div class="featured-item">
+                    <div class="icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Specialty Drinks</h3>
+                    <p>Unique sakura-infused teas, coffees, and signature cocktails</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Branch -->
+    <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-dark)"></div>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Menu</h2>
+                <p>Discover an expertly curated menu designed to delight every palate</p>
+            </div>
+            <div class="menu-tabs">
+                <button class="menu-tab active" data-category="all">All</button>
+                <button class="menu-tab" data-category="breakfast">Breakfast</button>
+                <button class="menu-tab" data-category="lunch">Lunch</button>
+                <button class="menu-tab" data-category="dinner">Dinner</button>
+                <button class="menu-tab" data-category="desserts">Desserts</button>
+                <button class="menu-tab" data-category="drinks">Drinks</button>
+            </div>
+            <div class="menu-items">
+                <!-- Breakfast Items -->
+                <div class="menu-item" data-category="breakfast">
+                    <div class="menu-item-image">
+                        <img src="images/menu/sakura-pancakes.jpg" alt="Sakura Pancakes">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>Sakura Blossom Latte</h3>
+                            <span class="price">₹189</span>
+                        </div>
+                        <p>A delicate blend of premium espresso and steamed milk infused with sakura essence</p>
+                        <div class="tags">
+                            <span class="tag">Signature</span>
+                            <span class="tag">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lunch Items -->
+                <div class="menu-item" data-category="lunch">
+                    <div class="menu-item-image">
+                        <img src="images/menu/bento-box.jpg" alt="Seasonal Bento Box">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>Signature Sakura Chicken Burger</h3>
+                            <span class="price">₹249</span>
+                        </div>
+                        <p>Juicy chicken patty with our special sakura sauce, fresh vegetables on a toasted bun</p>
+                        <div class="tags">
+                            <span class="tag">Signature</span>
+                            <span class="tag">Bestseller</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dinner Items -->
+                <div class="menu-item" data-category="dinner">
+                    <div class="menu-item-image">
+                        <img src="images/menu/sakura-salmon.jpg" alt="Sakura-Cured Salmon">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>Loaded French Fries with Sakura Mayo</h3>
+                            <span class="price">₹199</span>
+                        </div>
+                        <p>Crispy french fries loaded with cheese, special sakura mayo, and herbs</p>
+                        <div class="tags">
+                            <span class="tag">Vegetarian</span>
+                            <span class="tag">Shareable</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dessert Items -->
+                <div class="menu-item" data-category="desserts">
+                    <div class="menu-item-image">
+                        <img src="images/menu/sakura-mochi.jpg" alt="Sakura Mochi">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>Sakura Blossom Cheesecake</h3>
+                            <span class="price">₹129</span>
+                        </div>
+                        <p>Creamy cheesecake with a delicate sakura-flavored topping and cherry blossom garnish</p>
+                        <div class="tags">
+                            <span class="tag">Vegetarian</span>
+                            <span class="tag">Signature</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Drinks Items -->
+                <div class="menu-item" data-category="drinks">
+                    <div class="menu-item-image">
+                        <img src="images/menu/sakura-tea.jpg" alt="Sakura Tea">
+                    </div>
+                    <div class="menu-item-info">
+                        <div class="menu-item-header">
+                            <h3>Citrus Sakura Mocktail</h3>
+                            <span class="price">₹189</span>
+                        </div>
+                        <p>Refreshing blend of citrus juices with sakura syrup and sparkling water</p>
+                        <div class="tags">
+                            <span class="tag">Signature</span>
+                            <span class="tag">Vegan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-full-menu">
+                <a href="menu.html" class="btn primary">Explore Our Menu</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-light)"></div>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About Us</h2>
+                        <p>The blossoming of Sakura Café</p>
+                    </div>
+                    <p>At Sakura Café, we blend the warmth of Japanese cherry blossom aesthetics with delicious comfort food and specialty beverages to create a space where memories are brewed and bonds are celebrated. Nestled along the serene ECR highway near Serenity Beach, our air-conditioned, 25-seater sanctuary invites families, travelers, and friends to gather in joy and togetherness.</p>
+                    <p>Our highlights include authentic Sakura-inspired décor with cherry blossom trees and delicate leaf motifs, freshly brewed classic and specialty coffee & tea, gourmet burgers, wraps, sandwiches, and fried specialties, refreshing milkshakes, mocktails, and cool desserts, all with a convenient self-service model for swift and seamless dining.</p>
+                    <a href="about.html" class="btn secondary">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="images/about/chef.jpg" alt="Chef Miyako Tanaka">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Branch -->
+    <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-color)" data-divider-flip="true"></div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Moments at Sakura Café</h2>
+                <p>Step inside our serene Sakura-themed sanctuary</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery/interior-1.jpg" alt="Café Interior">
+                    <div class="overlay">
+                        <h3>Our Space</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/dish-1.jpg" alt="Signature Dish">
+                    <div class="overlay">
+                        <h3>Culinary Art</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/drink-1.jpg" alt="Sakura Cocktail">
+                    <div class="overlay">
+                        <h3>Signature Drinks</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/dessert-1.jpg" alt="Sakura Dessert">
+                    <div class="overlay">
+                        <h3>Sweet Endings</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/event-1.jpg" alt="Private Event">
+                    <div class="overlay">
+                        <h3>Special Events</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/garden-1.jpg" alt="Outdoor Garden">
+                    <div class="overlay">
+                        <h3>Sakura Garden</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="gallery.html" class="btn primary">Browse Our Gallery</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--accent-light)" data-divider-flip="true"></div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Guests Say</h2>
+                <p>Experiences shared by our visitors</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The Sakura Café experience is truly unique. The attention to detail in both the food and the ambiance makes every visit special. The sakura-infused dishes are a must-try!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/testimonial-1.jpg" alt="Emily Chen">
+                        <div class="author-info">
+                            <h4>Emily Chen</h4>
+                            <p>Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"As someone who lived in Japan for years, I can attest that Sakura Café captures the essence of Japanese hospitality and culinary tradition while adding their own creative twist."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/testimonial-2.jpg" alt="David Miller">
+                        <div class="author-info">
+                            <h4>David Miller</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"The seasonal bento box is a work of art - both visually and in terms of flavor. Each visit offers something new to discover. The sakura tea is the perfect complement."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/testimonial-3.jpg" alt="Sophia Kim">
+                        <div class="author-info">
+                            <h4>Sophia Kim</h4>
+                            <p>Culinary Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <div class="reservation-content">
+                <div class="section-header">
+                    <h2>Make a Reservation</h2>
+                    <p>Book your table at Sakura Café, Kottakuppam</p>
+                </div>
+                <form id="reservation-form" class="reservation-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="7+">7+ People</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests</label>
+                        <textarea id="special-requests" name="special-requests" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn primary">Book Table</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-dark)"></div>
+
+    <!-- Special Event Countdown -->
+    <section class="special-event-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sakura Spring Festival</h2>
+                <p>Join us for our annual celebration of cherry blossoms</p>
+            </div>
+            <div class="event-countdown" id="spring-festival-countdown" data-event-date="2024-04-15T18:00:00" data-event-name="Sakura Spring Festival" data-petal-count="30" data-petal-colors="#ffcad4,#f4acb7,#9d8189"></div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--accent-color)" data-divider-flip="true"></div>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with Sakura Café</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>123 Cherry Blossom Lane<br>Sakura District, Tokyo 100-0001<br>Japan</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Hours</h3>
+                            <p><strong>Monday - Friday:</strong> 8:00 AM - 10:00 PM<br>
+                            <strong>Saturday - Sunday:</strong> 9:00 AM - 11:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+81 3-1234-5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@sakuracafe.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7479754683745!2d139.7525511!3d35.6585805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bbd9009ec09%3A0x481a93f0d2a409dd!2sChiyoda%20City%2C%20Tokyo%2C%20Japan!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Stay updated with our seasonal menus, events, and special offers</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="Sakura Café Logo">
+                    <h2>Sakura Café</h2>
+                    <p>Brewing Bonds, Celebrating Moments</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reservation.html">Reservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sakura Café, Kottakuppam. All rights reserved.</p>
+                <p>Ground Floor, ECR Highway, Kottakuppam | Near Serenity Beach</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/enhanced-sakura.js"></script>
+    <script src="js/blossom-hover.js"></script>
+    <script src="js/animated-dividers.js"></script>
+    <script src="js/cursor-trail.js"></script>
+    <script src="js/interactive-gallery.js"></script>
+    <script src="js/event-countdown.js"></script>
+</body>
+</html>

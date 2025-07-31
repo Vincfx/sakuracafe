@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Sakura Café</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <style>
+        /* Additional styles specific to the about page */
+        .about-hero {
+            height: 40vh;
+            min-height: 300px;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/about-hero-bg.jpg') no-repeat center center/cover;
+        }
+        
+        .about-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary-light);
+            z-index: -1;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .about-image::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--accent-color);
+            z-index: -1;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .about-text h2 {
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .about-text p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+        
+        .about-values {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .value-card {
+            background-color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: transform var(--transition-medium);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-light);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            font-size: 2rem;
+        }
+        
+        .value-card h3 {
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .team-section {
+            background-color: var(--bg-light);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .team-member {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .team-info h3 {
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .team-position {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .team-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-light);
+            color: var(--accent-color);
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+        
+        .team-social a:hover {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        
+        .history-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: var(--spacing-xl) auto 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-light);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: var(--spacing-md) 0;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: var(--spacing-xl);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: var(--spacing-xl);
+        }
+        
+        .timeline-content {
+            background-color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            transform: rotate(45deg) translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            transform: rotate(45deg) translateY(-50%);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -12.5px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -12.5px;
+        }
+        
+        .timeline-year {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: var(--border-radius-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .timeline-title {
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        @media screen and (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-dot {
+                left: 18px !important;
+                right: auto !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                right: auto;
+                left: -10px;
+                transform: rotate(45deg) translateY(-50%);
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body id="main-content">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Sakura Café Logo">
+                <h1>Sakura Café</h1>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About Us</h1>
+                <h2>Our Story & Journey</h2>
+                <p>Discover the passion and tradition behind Sakura Café</p>
+            </div>
+        </div>
+        <div class="sakura-petals"></div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--primary-color)"></div>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>The Sakura Experience</h2>
+                    <p>Founded in 2010, Sakura Café was born from a deep appreciation for Japanese culinary traditions and the ephemeral beauty of cherry blossoms. Our founder, Chef Hiroshi Tanaka, envisioned a dining experience that would capture the essence of sakura season year-round—a place where guests could enjoy exceptional food in an atmosphere that celebrates the delicate beauty of nature.</p>
+                    <p>At Sakura Café, we blend traditional Japanese flavors with contemporary culinary techniques, creating dishes that are both authentic and innovative. Our menu changes seasonally to showcase the freshest ingredients, but the spirit of sakura—fleeting beauty, renewal, and celebration—remains our constant inspiration.</p>
+                    <p>More than just a restaurant, Sakura Café is a community gathering place where friends and families come together to create lasting memories. Our space is designed to evoke the tranquility of a Japanese garden, with subtle nods to cherry blossom season throughout the décor.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/about-main.jpg" alt="Sakura Café Interior">
+                </div>
+            </div>
+            
+            <!-- Section Divider: Branch -->
+            <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-dark)" data-divider-height="100"></div>
+            
+            <!-- Our Values -->
+            <div class="about-values">
+                <div class="section-header">
+                    <h2>Our Core Values</h2>
+                    <p>The principles that guide everything we do</p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Harmony with Nature</h3>
+                        <p>We respect the seasons and source ingredients that reflect the natural cycle, minimizing our environmental impact while maximizing flavor.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Omotenashi</h3>
+                        <p>We embrace the Japanese concept of wholehearted hospitality, anticipating our guests' needs and providing service with genuine care.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Culinary Excellence</h3>
+                        <p>We are committed to craftsmanship in every dish, honoring traditional techniques while embracing innovation.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community Connection</h3>
+                        <p>We believe in creating meaningful relationships with our guests, staff, and local producers, fostering a sense of belonging.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Continuous Growth</h3>
+                        <p>Like the sakura that blooms anew each year, we constantly seek to improve and evolve while staying true to our roots.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Balance & Mindfulness</h3>
+                        <p>We strive for harmony in flavors, presentation, and atmosphere, creating experiences that engage all the senses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-light)" data-divider-height="100"></div>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Team</h2>
+                <p>The passionate people behind Sakura Café</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/chef.jpg" alt="Chef Hiroshi Tanaka" class="team-photo">
+                    <div class="team-info">
+                        <h3>Hiroshi Tanaka</h3>
+                        <p class="team-position">Founder & Executive Chef</p>
+                        <p>With over 20 years of culinary experience across Japan and internationally, Chef Hiroshi brings authentic Japanese flavors with a contemporary twist.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/sous-chef.jpg" alt="Akiko Yamamoto" class="team-photo">
+                    <div class="team-info">
+                        <h3>Akiko Yamamoto</h3>
+                        <p class="team-position">Sous Chef</p>
+                        <p>A specialist in traditional Japanese desserts, Akiko creates our signature sakura-inspired sweets that perfectly balance flavor and artistry.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/manager.jpg" alt="Takeshi Nakamura" class="team-photo">
+                    <div class="team-info">
+                        <h3>Takeshi Nakamura</h3>
+                        <p class="team-position">General Manager</p>
+                        <p>With a background in luxury hospitality, Takeshi ensures every guest experiences the true meaning of Japanese omotenashi (hospitality).</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="images/sommelier.jpg" alt="Yuki Sato" class="team-photo">
+                    <div class="team-info">
+                        <h3>Yuki Sato</h3>
+                        <p class="team-position">Beverage Director</p>
+                        <p>A certified sake sommelier, Yuki curates our selection of premium sake, Japanese whisky, and signature cherry blossom-inspired cocktails.</p>
+                        <div class="team-social">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--accent-light)" data-divider-flip="true"></div>
+
+    <!-- History Section -->
+    <section class="history-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Journey</h2>
+                <p>The evolution of Sakura Café through the years</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2010</span>
+                        <h3 class="timeline-title">The Beginning</h3>
+                        <p>Chef Hiroshi Tanaka opens the first Sakura Café with just 8 tables, focusing on traditional Japanese dishes with seasonal ingredients.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2012</span>
+                        <h3 class="timeline-title">First Recognition</h3>
+                        <p>Sakura Café receives its first culinary award for "Best New Restaurant" and expands to accommodate growing demand.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2015</span>
+                        <h3 class="timeline-title">Garden Addition</h3>
+                        <p>We add our signature outdoor garden dining area, complete with authentic cherry blossom trees and traditional Japanese landscaping.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2018</span>
+                        <h3 class="timeline-title">Culinary Innovation</h3>
+                        <p>Launch of our seasonal tasting menu featuring fusion dishes that blend Japanese traditions with international influences.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h3 class="timeline-title">10th Anniversary</h3>
+                        <p>Despite global challenges, we celebrate a decade of service with a renewed commitment to our community through meal donation programs.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2023</span>
+                        <h3 class="timeline-title">Present Day</h3>
+                        <p>Today, Sakura Café continues to evolve while staying true to our roots, with sustainability initiatives and an expanded culinary education program.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-dark)"></div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Stay updated with our seasonal menus, events, and special offers</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="Sakura Café Logo">
+                    <h2>Sakura Café</h2>
+                    <p>A blossoming culinary experience</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reservation.html">Reservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sakura Café. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/enhanced-sakura.js"></script>
+    <script src="js/blossom-hover.js"></script>
+    <script src="js/animated-dividers.js"></script>
+    <script src="js/cursor-trail.js"></script>
+    <script src="js/interactive-gallery.js"></script>
+    <script src="js/event-countdown.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+            
+            timelineItems.forEach(item => {
+                observer.observe(item);
+                item.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

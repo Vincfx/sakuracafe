@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Sakura Café</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <style>
+        /* Additional styles specific to the menu page */
+        .menu-hero {
+            height: 50vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('images/menu-hero-bg.jpg') no-repeat center center/cover;
+        }
+        
+        .menu-categories {
+            background-color: var(--light-bg);
+            padding: var(--spacing-md) 0;
+        }
+        
+        .menu-category {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .menu-category-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+        
+        .menu-category-header h2 {
+            display: inline-block;
+            background-color: var(--white);
+            padding: 0 var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .menu-category-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--primary-color);
+            z-index: 0;
+        }
+        
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .menu-item-details {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-xs);
+        }
+        
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .menu-item-description {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .dietary-info {
+            display: flex;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+        
+        .dietary-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--accent-color);
+            font-size: 0.7rem;
+            cursor: help;
+        }
+        
+        .menu-note {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-md);
+            background-color: var(--primary-light);
+            border-radius: var(--border-radius-md);
+        }
+    </style>
+</head>
+<body id="main-content">
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="Sakura Café Logo">
+                <h1>Sakura Café</h1>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html" class="active">Menu</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="reservation.html">Reservation</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Menu</h1>
+                <h2>A Culinary Journey Through Sakura Season</h2>
+                <p>Explore our carefully crafted dishes inspired by Japanese traditions and seasonal ingredients</p>
+            </div>
+        </div>
+        <div class="sakura-petals"></div>
+    </section>
+    
+    <!-- Section Divider: Wave -->
+    <div class="section-divider" data-divider-type="wave" data-divider-color="var(--primary-color)"></div>
+
+    <!-- Menu Categories Navigation -->
+    <section class="menu-categories">
+        <div class="container">
+            <div class="menu-tabs">
+                <a href="#breakfast" class="menu-tab">Breakfast</a>
+                <a href="#lunch" class="menu-tab">Lunch</a>
+                <a href="#dinner" class="menu-tab">Dinner</a>
+                <a href="#desserts" class="menu-tab">Desserts</a>
+                <a href="#drinks" class="menu-tab">Drinks</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Branch -->
+    <div class="section-divider" data-divider-type="branch" data-divider-color="var(--primary-dark)"></div>
+
+    <!-- Full Menu Section -->
+    <section class="full-menu">
+        <div class="container">
+            <!-- Breakfast Category -->
+            <div id="breakfast" class="menu-category">
+                <div class="menu-category-header">
+                    <h2>Breakfast</h2>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Pancakes</span>
+                            <span class="price">$12.95</span>
+                        </div>
+                        <p class="menu-item-description">Fluffy pancakes infused with sakura extract, topped with sakura cream and seasonal berries</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Japanese Breakfast Set</span>
+                            <span class="price">$16.95</span>
+                        </div>
+                        <p class="menu-item-description">Grilled salmon, steamed rice, miso soup, tamagoyaki, and pickled vegetables</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Gluten-Free Option Available">GF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Matcha Granola Bowl</span>
+                            <span class="price">$10.95</span>
+                        </div>
+                        <p class="menu-item-description">House-made granola with matcha yogurt, fresh fruits, honey, and edible flowers</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Toast</span>
+                            <span class="price">$9.95</span>
+                        </div>
+                        <p class="menu-item-description">Thick-cut shokupan toast with sakura-infused butter, red bean paste, and sakura salt</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lunch Category -->
+            <div id="lunch" class="menu-category">
+                <div class="menu-category-header">
+                    <h2>Lunch</h2>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Seasonal Bento Box</span>
+                            <span class="price">$18.95</span>
+                        </div>
+                        <p class="menu-item-description">Chef's selection of seasonal specialties including miso soup, rice, pickles, and three seasonal items</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Gluten-Free Option Available">GF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Cherry Blossom Soba</span>
+                            <span class="price">$16.95</span>
+                        </div>
+                        <p class="menu-item-description">Chilled buckwheat noodles with sakura-infused dipping sauce, spring vegetables, and cherry blossom garnish</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegan">VG</span>
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Chirashi Bowl</span>
+                            <span class="price">$22.95</span>
+                        </div>
+                        <p class="menu-item-description">Sushi rice topped with assorted sashimi, avocado, pickled ginger, and sakura-infused soy sauce</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Gluten-Free Option Available">GF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Spring Vegetable Tempura</span>
+                            <span class="price">$14.95</span>
+                        </div>
+                        <p class="menu-item-description">Lightly battered seasonal vegetables with sakura salt and tentsuyu dipping sauce</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dinner Category -->
+            <div id="dinner" class="menu-category">
+                <div class="menu-category-header">
+                    <h2>Dinner</h2>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura-Cured Salmon</span>
+                            <span class="price">$24.95</span>
+                        </div>
+                        <p class="menu-item-description">Salmon cured with sakura salt, served with spring vegetables and cherry blossom rice</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                            <span class="dietary-icon" title="Gluten-Free">GF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Wagyu Beef Sukiyaki</span>
+                            <span class="price">$32.95</span>
+                        </div>
+                        <p class="menu-item-description">Premium wagyu beef slices with seasonal vegetables in a sweet soy broth, served with a side of rice</p>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Seafood Hotpot</span>
+                            <span class="price">$28.95</span>
+                        </div>
+                        <p class="menu-item-description">Assorted seafood and vegetables in a sakura-infused dashi broth, served with ponzu sauce</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Gluten-Free Option Available">GF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Cherry Blossom Risotto</span>
+                            <span class="price">$22.95</span>
+                        </div>
+                        <p class="menu-item-description">Creamy risotto with sakura shrimp, spring peas, and cherry blossom essence</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desserts Category -->
+            <div id="desserts" class="menu-category">
+                <div class="menu-category-header">
+                    <h2>Desserts</h2>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Mochi</span>
+                            <span class="price">$8.95</span>
+                        </div>
+                        <p class="menu-item-description">Traditional Japanese rice cake filled with sweet red bean paste and wrapped in a pickled cherry blossom leaf</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                            <span class="dietary-icon" title="Traditional">T</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Cherry Blossom Parfait</span>
+                            <span class="price">$12.95</span>
+                        </div>
+                        <p class="menu-item-description">Layers of sakura jelly, vanilla custard, red bean paste, and sakura cookie crumble, topped with sakura ice cream</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Matcha Cheesecake</span>
+                            <span class="price">$9.95</span>
+                        </div>
+                        <p class="menu-item-description">Creamy matcha-infused cheesecake on a black sesame crust, served with sakura syrup</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Seasonal Fruit Daifuku</span>
+                            <span class="price">$7.95</span>
+                        </div>
+                        <p class="menu-item-description">Mochi filled with seasonal fruit and sweet bean paste, dusted with sakura powder</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                            <span class="dietary-icon" title="Gluten-Free">GF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Drinks Category -->
+            <div id="drinks" class="menu-category">
+                <div class="menu-category-header">
+                    <h2>Drinks</h2>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Tea</span>
+                            <span class="price">$5.95</span>
+                        </div>
+                        <p class="menu-item-description">Fragrant green tea infused with preserved cherry blossoms, served hot or iced</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Signature">S</span>
+                            <span class="dietary-icon" title="Vegan">VG</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Cherry Blossom Latte</span>
+                            <span class="price">$6.95</span>
+                        </div>
+                        <p class="menu-item-description">Espresso with steamed milk, sakura syrup, and sakura petal garnish</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegetarian">V</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Sakura Fizz</span>
+                            <span class="price">$7.95</span>
+                        </div>
+                        <p class="menu-item-description">Sparkling water with sakura syrup, yuzu juice, and fresh berries</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegan">VG</span>
+                            <span class="dietary-icon" title="Signature Dish">S</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-list-item">
+                        <div class="menu-item-details">
+                            <span class="menu-item-name">Matcha Ceremony</span>
+                            <span class="price">$8.95</span>
+                        </div>
+                        <p class="menu-item-description">Traditional matcha prepared tableside in the ceremonial style</p>
+                        <div class="dietary-info">
+                            <span class="dietary-icon" title="Vegan">VG</span>
+                            <span class="dietary-icon" title="Traditional">T</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Menu Note -->
+            <div class="menu-note">
+                <p><strong>Dietary Information:</strong> V = Vegetarian, VG = Vegan, GF = Gluten-Free, S = Signature Dish, T = Traditional</p>
+                <p>Please inform your server of any allergies or dietary restrictions. We are happy to accommodate special requests when possible.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section Divider: Petals -->
+    <div class="section-divider" data-divider-type="petals" data-divider-color="var(--primary-light)"></div>
+
+    <!-- Reservation CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Experience Our Seasonal Menu</h2>
+                <p>Join us for a memorable dining experience at Sakura Café</p>
+                <a href="reservation.html" class="btn primary">Make a Reservation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="Sakura Café Logo">
+                    <h2>Sakura Café</h2>
+                    <p>A blossoming culinary experience</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="reservation.html">Reservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sakura Café. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/enhanced-sakura.js"></script>
+    <script src="js/blossom-hover.js"></script>
+    <script src="js/animated-dividers.js"></script>
+    <script src="js/cursor-trail.js"></script>
+    <script src="js/interactive-gallery.js"></script>
+    <script src="js/event-countdown.js"></script>
+</body>
+</html>

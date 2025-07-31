@@ -1,0 +1,193 @@
+/* 
+ * Sakura Café - Animations Stylesheet
+ * Contains all animations for the sakura-themed café website
+ */
+
+/* Sakura Petal Falling Animation */
+@keyframes falling {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translate(10px, 25vh) rotate(90deg) scale(0.9);
+    }
+    50% {
+        transform: translate(-10px, 50vh) rotate(180deg) scale(1.1);
+    }
+    75% {
+        transform: translate(10px, 75vh) rotate(270deg) scale(0.9);
+    }
+    100% {
+        transform: translate(-10px, 100vh) rotate(360deg) scale(1);
+    }
+}
+
+/* Sakura Petal Swaying Animation */
+@keyframes sway {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(5px) rotate(5deg);
+    }
+    50% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In Left Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade In Right Animation */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Apply animations to elements */
+
+/* Sakura petals */
+.sakura-petal {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 150% 0 150% 0;
+    animation: falling linear infinite, sway ease-in-out infinite;
+    animation-duration: 10s, 3s;
+    pointer-events: none;
+}
+
+/* Animated elements on scroll */
+.featured-item.animated,
+.menu-item.animated,
+.gallery-item.animated {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Stagger animations for grid items */
+.featured-item:nth-child(1).animated { animation-delay: 0.1s; }
+.featured-item:nth-child(2).animated { animation-delay: 0.3s; }
+.featured-item:nth-child(3).animated { animation-delay: 0.5s; }
+
+.menu-item:nth-child(odd).animated { animation: fadeInLeft 0.8s ease-out forwards; }
+.menu-item:nth-child(even).animated { animation: fadeInRight 0.8s ease-out forwards; }
+
+/* About section animations */
+.about-text.animated { animation: fadeInLeft 0.8s ease-out forwards; }
+.about-image.animated { animation: fadeInRight 0.8s ease-out forwards; }
+
+/* Gallery hover effect */
+.gallery-item:hover img {
+    animation: pulse 2s infinite;
+}
+
+/* Button hover animation */
+.btn.primary:hover,
+.btn.secondary:hover {
+    animation: pulse 0.5s;
+}
+
+/* Logo subtle animation */
+.logo img:hover {
+    animation: rotate 5s linear infinite;
+}
+
+/* Testimonial transition */
+.testimonial {
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Reservation confirmation animation */
+.reservation-confirmation {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Back to top button animation */
+.back-to-top.visible:hover {
+    animation: bounce 1s infinite;
+}
+
+/* Mobile menu animation */
+.mobile-nav.active {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Hero content animation */
+.hero-content {
+    animation: fadeIn 1s ease-out 0.5s forwards;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Section headers animation */
+.section-header h2::after {
+    animation: fadeIn 1s ease-out forwards;
+}

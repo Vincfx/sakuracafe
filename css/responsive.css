@@ -1,0 +1,214 @@
+/* 
+ * Sakura Café - Responsive Stylesheet
+ * Mobile-first responsive design for the sakura-themed café website
+ */
+
+/* Base Mobile Styles (Default) */
+
+/* Show mobile menu button, hide desktop nav on small screens */
+@media screen and (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        order: -1;
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-map {
+        margin-top: var(--spacing-lg);
+    }
+    
+    .newsletter-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-bottom-links {
+        margin-top: var(--spacing-sm);
+    }
+    
+    .footer-bottom-links a {
+        margin: 0 var(--spacing-sm);
+    }
+}
+
+/* Small tablets and large phones */
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .menu-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium devices (tablets) */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .menu-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .about-content {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Large devices (desktops) */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+/* Extra large devices */
+@media screen and (min-width: 1201px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Specific component responsive adjustments */
+
+/* Menu section responsive */
+@media screen and (max-width: 576px) {
+    .menu-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .menu-tab {
+        width: 100%;
+        text-align: center;
+        margin-bottom: var(--spacing-xs);
+    }
+}
+
+/* Reservation form responsive */
+@media screen and (max-width: 576px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Gallery responsive adjustments */
+@media screen and (max-width: 400px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Testimonial responsive adjustments */
+@media screen and (max-width: 576px) {
+    .testimonial {
+        padding: var(--spacing-md);
+    }
+    
+    .testimonial-author img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Header responsive height adjustment */
+@media screen and (max-width: 576px) {
+    header .container {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .logo img {
+        height: 30px;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ensure buttons are properly sized on small screens */
+@media screen and (max-width: 400px) {
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Adjust section padding for smaller screens */
+@media screen and (max-width: 768px) {
+    section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+/* Ensure proper spacing in footer on small screens */
+@media screen and (max-width: 576px) {
+    .footer-content {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Adjust back to top button position on small screens */
+@media screen and (max-width: 576px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}

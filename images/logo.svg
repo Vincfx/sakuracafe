@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#ffffff" stroke="#f8c8dc" stroke-width="2"/>
+  
+  <!-- Sakura Flower -->
+  <g transform="translate(100, 100)">
+    <!-- Petal 1 (Top) -->
+    <path d="M0,-60 C20,-50 30,-30 20,-10 C10,0 -10,0 -20,-10 C-30,-30 -20,-50 0,-60" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="1"/>
+    
+    <!-- Petal 2 (Right) -->
+    <path d="M60,0 C50,20 30,30 10,20 C0,10 0,-10 10,-20 C30,-30 50,-20 60,0" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="1" transform="rotate(72, 0, 0)"/>
+    
+    <!-- Petal 3 (Bottom Right) -->
+    <path d="M60,0 C50,20 30,30 10,20 C0,10 0,-10 10,-20 C30,-30 50,-20 60,0" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="1" transform="rotate(144, 0, 0)"/>
+    
+    <!-- Petal 4 (Bottom Left) -->
+    <path d="M60,0 C50,20 30,30 10,20 C0,10 0,-10 10,-20 C30,-30 50,-20 60,0" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="1" transform="rotate(216, 0, 0)"/>
+    
+    <!-- Petal 5 (Left) -->
+    <path d="M60,0 C50,20 30,30 10,20 C0,10 0,-10 10,-20 C30,-30 50,-20 60,0" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="1" transform="rotate(288, 0, 0)"/>
+    
+    <!-- Center Circle -->
+    <circle cx="0" cy="0" r="10" fill="#8d3f63"/>
+  </g>
+  
+  <!-- Text Path for "SAKURA CAFÉ" -->
+  <path id="textPath" d="M30,150 A70,70 0 0,1 170,150" fill="none" stroke="none"/>
+  
+  <!-- Text on Path -->
+  <text font-family="'Playfair Display', serif" font-size="18" font-weight="700" fill="#8d3f63" text-anchor="middle">
+    <textPath href="#textPath" startOffset="50%">SAKURA CAFÉ</textPath>
+  </text>
+  
+  <!-- Small Branch with Leaves -->
+  <g transform="translate(140, 60) rotate(45)">
+    <!-- Branch -->
+    <path d="M0,0 C10,10 20,15 30,20" fill="none" stroke="#8d3f63" stroke-width="1.5"/>
+    
+    <!-- Leaves -->
+    <path d="M10,10 C15,5 20,5 22,8 C20,12 15,12 10,10" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="0.5"/>
+    <path d="M20,15 C25,12 30,12 32,15 C30,18 25,18 20,15" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Small Branch with Leaves (Mirrored) -->
+  <g transform="translate(60, 60) rotate(-45)">
+    <!-- Branch -->
+    <path d="M0,0 C-10,10 -20,15 -30,20" fill="none" stroke="#8d3f63" stroke-width="1.5"/>
+    
+    <!-- Leaves -->
+    <path d="M-10,10 C-15,5 -20,5 -22,8 C-20,12 -15,12 -10,10" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="0.5"/>
+    <path d="M-20,15 C-25,12 -30,12 -32,15 C-30,18 -25,18 -20,15" fill="#f8c8dc" stroke="#e4a3b8" stroke-width="0.5"/>
+  </g>
+</svg>
